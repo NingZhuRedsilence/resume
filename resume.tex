@@ -1,0 +1,450 @@
+\documentclass[12pt,letterpaper]{article}
+
+\def\myauthor{Xunmo Yang}
+\def\mytitle{XY-vita}
+\def\myemail{xunmoyang@gmail.com}
+%\def\myweb{pdgessler}
+\def\myphone{832-519-8420}
+\def\mykeywords{
+  Xunmo Yang, 
+  resume, 
+  curriculum, 
+  vita, 
+  curriculum vita, 
+  cv, 
+  xunmo, 
+  pdg
+}
+
+\setlength\parindent{0pt}
+
+\newenvironment{itemize*}%
+{\begin{itemize}%
+  \setlength{\itemsep}{0pt}}%
+{\end{itemize}}
+
+\usepackage[hyphens]{url}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+%\usepackage{ocgtools}
+\usepackage{enumitem}
+\setlist{nolistsep,leftmargin=0.15in}
+\usepackage[log-declarations=false]{xparse}
+\usepackage[adobe-garamond]{mathdesign}
+\usepackage[no-math]{fontspec}
+\usepackage{microtype}
+%\usepackage[margin=1.125in,top=1.375in,right=1in,left=2in]{geometry}
+\usepackage[margin=1.2in,top=1.in,right=0.6in,left=1.6in, bottom=1.2in]{geometry}
+\usepackage[strict]{changepage}
+\usepackage{fontawesome}
+\usepackage[
+  ocgcolorlinks,
+  urlcolor={[rgb]{0,0,0.54}},
+  unicode,
+  plainpages=false,
+  pdfpagelabels,
+  pdftitle={\mytitle},
+  pdfauthor={\myauthor},
+  pdfkeywords={\mykeywords},
+  breaklinks=true
+]{hyperref}
+%\usepackage[anythingbreaks]{breakurl}
+
+% fix ocgcolor link breaking; thanks due to Benjamin Lerner (http://goo.gl/VZKR7M)
+\makeatletter
+\AtBeginDocument{%
+  \newlength{\temp@x}%
+  \newlength{\temp@y}%
+  \newlength{\temp@w}%
+  \newlength{\temp@h}%
+  \def\my@coords#1#2#3#4{%
+    \setlength{\temp@x}{#1}%
+    \setlength{\temp@y}{#2}%
+    \setlength{\temp@w}{#3}%
+    \setlength{\temp@h}{#4}%
+    \adjustlengths{}%
+    \my@pdfliteral{\strip@pt\temp@x\space\strip@pt\temp@y\space\strip@pt\temp@w\space\strip@pt\temp@h\space re}}%
+  \ifpdf
+    \typeout{In PDF mode}%
+    \def\my@pdfliteral#1{\pdfliteral page{#1}}% I don't know why % this command...
+    \def\adjustlengths{}%
+  \fi
+  \ifxetex
+    \def\my@pdfliteral #1{\special{pdf: literal direct #1}}% isn't equivalent to this one
+    \def\adjustlengths{\setlength{\temp@h}{-\temp@h}\addtolength{\temp@y}{1in}\addtolength{\temp@x}{-1in}}%
+  \fi%
+  \def\Hy@colorlink#1{%
+    \begingroup
+      \ifHy@ocgcolorlinks
+        \def\Hy@ocgcolor{#1}%
+        \my@pdfliteral{q}%
+        \my@pdfliteral{7 Tr}% Set text mode to clipping-only
+      \else
+        \HyColor@UseColor#1%
+      \fi
+  }%
+  \def\Hy@endcolorlink{%
+    \ifHy@ocgcolorlinks%
+      \my@pdfliteral{/OC/OCPrint BDC}%
+      \my@coords{0pt}{0pt}{\pdfpagewidth}{\pdfpageheight}%
+      \my@pdfliteral{F}% Fill clipping path (the url's text) with current color
+      \my@pdfliteral{EMC/OC/OCView BDC}%
+      \begingroup%
+        \expandafter\HyColor@UseColor\Hy@ocgcolor%
+        \my@coords{0pt}{0pt}{\pdfpagewidth}{\pdfpageheight}%
+        \my@pdfliteral{F}% Fill clipping path (the url's text) with \Hy@ocgcolor
+      \endgroup%
+      \my@pdfliteral{EMC}%
+      \my@pdfliteral{0 Tr}% Reset text to normal mode
+      \my@pdfliteral{Q}%
+    \fi
+    \endgroup
+  }%
+}
+\makeatother
+% end fixes
+
+\newcommand{\ML}{\textsc{Matlab}}
+\newcommand{\Simu}{Simulink}
+\newcommand{\MLS}{\ML{}/\Simu{}}
+\newcommand{\apdl}{\textsc{APDL}}
+\newcommand{\ansys}{\textsc{Ansys}}
+\newcommand{\fluent}{\textsc{Fluent}}
+\newcommand\CPP{C/C\ensuremath{+}\ensuremath{+}}
+\newcommand{\Star}{\textsc{Star-CCM\ensuremath{+}}}
+
+\newcommand{\mhead}[1]{\leavevmode\marginpar{\sffamily\footnotesize #1}}
+\newcommand{\rdate}[1]{{\addfontfeature{Numbers=OldStyle} \hfill #1}}
+\renewcommand{\date}[1]{{\addfontfeature{Numbers=OldStyle} #1}}
+\renewcommand{\labelitemi}{-} 
+
+\setmainfont[
+  Ligatures={TeX,Common},
+  BoldFont={AGaramondPro-Semibold},
+]{Adobe Garamond Pro}
+\setsansfont[
+  Ligatures={TeX,Common},
+  Letters=SmallCaps,
+  Color=660000,
+]{Adobe Garamond Pro}
+\setmonofont[Scale=0.85]{FontAwesome}
+
+\makeatletter % fix for \hrulefill w/ mathdesign package
+\def\hrulefill{\leavevmode\leaders \hrule height \rulethickness \hfill\kern\z@}
+\makeatletter
+
+\begin{document}\flushbottom
+\pagestyle{fancy} \setlength\headwidth{6.9in}
+\rhead{\textsc{Xunmo Yang - r\'{e}sum\'{e} - \thepage{} of \pageref*{LastPage}}} \cfoot{}
+\thispagestyle{empty}
+\begin{adjustwidth}{-1in}{}
+%{\Huge
+%  {\textsc{%
+%    {\addfontfeature{Style=TitlingCaps}P}\kern-1.5ptaul 
+%    {\addfontfeature{Style=TitlingCaps}D}\kern-2pt.~%
+%    {\addfontfeature{Style=TitlingCaps}G}essler}
+%  }
+%}
+
+{\Huge
+  {\textsc{%
+    {\addfontfeature{Style=TitlingCaps}X}\kern-1.5pt unmo 
+%    {\addfontfeature{Style=TitlingCaps}D}\kern-2pt.~%
+    {\addfontfeature{Style=TitlingCaps}Y}ang}
+  }
+}
+\hfill\hfill\hfill
+{
+  \begin{minipage}[b]{1.8in}
+    \flushleft
+%    \footnotesize 
+    \small
+%    14019 Cypress Meadows Drive \\ 
+%    Houston, TX~~77047\\
+    832-519-8420\\
+    \href{mailto:\myemail}{\myemail} \\
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{2in}
+    \flushright 
+%    \footnotesize 
+    \small
+%    \href{tel:\myphone}{\myphone} \\ %\texttt{?}~
+%    \href{mailto:\myemail}{\myemail} \\
+    \href{https://www.github.com/tcya}{\faGithub~~https://github.com/tcya}\\
+    \href{https://www.linkedin.com/in/xunmoyang}{\faLinkedin~~linkedin.com/in/xunmoyang}
+  \end{minipage}
+}\par
+\hrulefill
+\end{adjustwidth}  
+\reversemarginpar 
+\setlength\marginparwidth{0.85in}
+\smallskip
+\mhead{Education}%
+\textbf{Udacity} - Data Analyst Nanodegree \hfill {\rdate{\textsc{September} 2015}} \newline
+\smallskip
+\textbf{University of Houston} - Houston, TX, US  \\
+\emph{Ph.D, Chemistry (GPA: 3.6)} \rdate{Anticipated graduation: \textsc{May} 2016}
+\begin{itemize*}
+%  \item Cumulative GPA: 3.44/4.00; {Energy Systems Specialization}
+  \item Dissertation: \emph{Ab initio} Calculations of Intramolecular Charge and Energy Transfer with Reduced Modes in Donor-bridge-acceptor Species
+  \item Advisor: Dr. \href{http://www.chem.uh.edu/people/faculty/Bittner/honors.php}{Eric R. Bittner}
+%  \item Coursework:\newline
+%    \begin{tabular}{ll}
+%      \addlinespace\toprule
+%      Advanced Engineering Mathematics & Transport Phenomena \\
+%      Approx.~Methods in Engineering Analysis & Advanced Fluid Mechanics \\
+%      Intermediate Thermodynamics & Sustainable Engineering \\
+%      Statistical Thermodynamics & Combustion \\
+%      \bottomrule
+%    \end{tabular}
+\end{itemize*}
+
+\smallskip
+%\medskip
+\textbf{Xiamen University} - Xiamen, Fujian, China  \\
+\emph{Bachelor of Science, Chemistry; Mathematics Minor} \rdate{\textsc{September} 2005 - \textsc{July} 2009}
+\begin{itemize*}
+%  \item GPA: 3.4 in major, 3.0 overall; Mathematics Minor
+  \item Thesis: Study of Weak Interaction and Aromatic Carbon Atom in DREIDING Force Field
+%  \item Selected Coursework:\newline
+%    \begin{tabular}{ll}
+%      \addlinespace\toprule
+%      
+%      \bottomrule
+%    \end{tabular}
+\end{itemize*}
+
+\bigskip
+%\mhead{Software \newline Proficiencies}%
+\mhead{Skills}%
+\emph{Working knowledge}\newline%?comfortable using in a professional setting
+Python, Mathematica, R, HTML/CSS, D3.js, Octave, SQL, Vim, Linux, \LaTeX, 
+Q-Chem, Gaussian
+%various quantum chemistry software
+
+\smallskip
+%\medskip
+\emph{Basic knowledge}\newline%?would require some training/use to refresh my memory
+JavaScript, MongoDB, SAS, Hadoop, MATLAB, FORTRAN, C, various chemistry instruments
+
+\smallskip
+\emph{Languages}\\
+Fluent in English, Chinese and Taiwanese
+
+\bigskip
+\mhead{Project \newline Experience}%
+\textbf{Udacity} - \href{https://profiles.udacity.com/u/xunmoyang}{Data Analyst Nanodegree} \hfill {\rdate{\textsc{January - September} 2015}} \newline
+\emph{PISA Data Visualization} \hfill \href{https://github.com/tcya/PISA-visualization}{github.com/tcya/PISA-visualization} 
+\begin{itemize*}
+  \item Explored the relations between family possessions and student scores in the Programme for International Student Assessment (PISA) data using R and Python
+  \item Visualized the analysis with interactions using D3.js and dimple.js
+\end{itemize*}
+
+\smallskip
+\emph{Identifying Fraud from Enron Email} \hfill \href{https://github.com/tcya/Identify-Enron-Corporate-Fraud}{github.com/tcya/Identify-Enron-Corporate-Fraud} 
+\begin{itemize*}
+  \item Investigated the Enron email corpus data with decision tree, Gaussian naive Bayesian, and k-means clustering machine learning techniques
+\end{itemize*}
+
+\smallskip
+\emph{Red Wine Study} \hfill \href{https://github.com/tcya/what-affects-red-wine-quality}{github.com/tcya/what-affects-red-wine-quality} 
+\begin{itemize*}
+  \item Modeled the influence of various chemicals to red wine quality on a wine \href{https://s3.amazonaws.com/udacity-hosted-downloads/ud651/wineQualityInfo.txt}{dataset} by linear regression with Lasso
+\end{itemize*}
+
+\smallskip
+\emph{Houston Map Data Wrangling} \hfill \href{https://github.com/tcya/houston-mapdata-wrangling}{github.com/tcya/houston-mapdata-wrangling} 
+\begin{itemize*}
+  \item Cleaned the map data on \href{www.openstreetmap.org}{openstreetmap} of the great Houston area (the file size > 500M)
+  \item Analyzed the cleaned data with MongoDB queries
+\end{itemize*}
+
+\smallskip
+\emph{New York Subway Data Analysis} \hfill \href{https://github.com/tcya/new-york-subway-data-analysis}{github.com/tcya/new-york-subway-data-analysis} 
+\begin{itemize*}
+  \item Statistically tested the relation between the ridership of subway and weather in New York
+\end{itemize*}
+
+\smallskip
+\emph{A/B Testing}
+\begin{itemize*}
+  \item Evaluated a hypothetical A/B test trying to reduce the number of frustrated students after enrollment on Udacity
+\end{itemize*}
+
+\medskip
+\textbf{Udacity} - {Intro to Hadoop and MapReduce} \hfill {\rdate{\textsc{October} 2015}} \newline
+\emph{Forum Data Analysis} \hfill \href{https://github.com/tcya/udacity-forum-hadoop-analysis}{github.com/tcya/udacity-forum-hadoop-analysis} 
+\begin{itemize*}
+  \item Programmed some MapReduce codes for Hadoop to analyze the posts in Udacity's forum.
+\end{itemize*}
+
+\bigskip
+\mhead{Independent \newline Coursework}%
+\textbf{Udacity:} 6 computer science courses (certificates available on my LinkedIn) \\
+\textbf{edX:} 2 computer science courses (certificates available on my LinkedIn)
+
+\bigskip
+
+\mhead{Research \& \\ Teaching \newline Experience}%
+%\textbf{Udacity}\newline
+%\emph{Data Analyst Nanodegree Team Guide} \rdate{\textsc{October}~2015 - \textsc{present}}
+%\begin{itemize*}
+%  \item Help other students in the nanodegree program commit to their studies via online guidance
+%\end{itemize*}
+%
+%\smallskip
+%
+\textbf{University of Houston,} Houston, TX \newline
+\emph{Research} \& \emph{Teaching Assistant} \rdate{\textsc{August}~2010 - \textsc{present}}
+\begin{itemize*}
+  \item Developed and coded in Mathematica a new theoretical molecular dynamics analysis scheme based on Lanczos algorithm and time-convolutionless master equation  
+  \item Benchmarked the scheme with a classical series of molecules and researched the dynamics
+  \item Optimized the geometry of tripodal amine-Cu(I) complexes using density functional theory (DFT), to assist further research of their reactivity and stability
+%   against molecular oxygen oxidation and ligand dissociation/exchange.
+%  \item Collaborate to maintain Linux servers in the lab
+  \item Teach general and physical chemistry labs independently. Instruments used include UV/VIS, FT-IR, ESR, NMR, STM and XRD
+\end{itemize*}
+
+%\emph{Teaching Assistant} \rdate{\textsc{August}~2010 - \textsc{present}}
+%\begin{itemize*}
+%  \item Teach general and physical chemistry labs independently. Instruments used include UV/VIS, FT-IR, ESR, NMR, STM and XRD
+%  \item Organized chemistry stockroom and inventoried hazardous chemicals according to MSDS
+%\end{itemize*}
+
+
+\smallskip
+\textbf{Xiamen University,} Xiamen, Fujian, China \newline
+\emph{Research Assistant} \rdate{\textsc{August}~2009 - \textsc{June} 2010}
+\begin{itemize*}
+  \item Implemented FORTRAN programs for the point group and atom type recognition in AMBER and DREIDING force fields, as part of efficient QM/MM method development
+\end{itemize*}
+
+
+
+
+\bigskip
+\mhead{Publications}%
+%\href{http://pubs.acs.org/doi/abs/10.1021/jp503041y}{Intramolecular Charge and Energy Transfer Rates with Reduced Modes: Comparison to Marcus Theory for Donor-Bridge-Acceptor Systems}\\
+\href{http://pubs.acs.org/doi/abs/10.1021/jp503041y}{\textbf{Intramolecular Charge and Energy Transfer Rates with Reduced Modes: Comparison to Marcus}}\\ 
+\href{http://pubs.acs.org/doi/abs/10.1021/jp503041y}{\textbf{Theory for Donor-Bridge-Acceptor Systems}}\\
+Yang, Xunmo and Bittner, Eric. \emph{The Journal of Physical Chemistry A}, \textbf{2014}, \emph{118}(28), pp 5196-5203
+
+\href{http://scitation.aip.org/content/aip/journal/jcp/142/24/10.1063/1.4923191}{\textbf{Computing Intramolecular Charge and Energy Transfer Rates using Optimal Modes}}\\ 
+Yang, Xunmo and Bittner, Eric. \emph{The Journal of Chemical Physics, \emph{142}, 244114 (2015)}
+
+\smallskip
+\textbf{Tripodal Amine Ligands for Accelerating Cu-Catalyzed Azide-Alkyne Cycloaddition: Efficiency and Stability against Oxidation and Dissociation}\\
+Zhu, Zhiling; Chen, Haoqing; Li, Siheng; Huang, Yongkai; Yang, Xunmo; Bittner, Eric; Cai, Chengzhi. (Submitted to \emph{The Journal of Organic Chemistry})
+
+
+\bigskip
+\mhead{Patent}%
+\href{https://www.google.com/patents/CN2665845Y?cl=en}{Coriolis force experiment plate} \quad\quad\quad\quad No.: CN 2665845 Y  \quad\quad\quad\quad Issued: 12/22/2004 
+
+
+%\bigskip
+%\mhead{Languages}%
+%Fluent in English, Chinese and Taiwanese
+%\newgeometry{margin=1.125in,top=1.5in,right=0.8in,left=1.8in}
+%\reversemarginpar\setlength\marginparwidth{0.85in}
+
+
+%\mhead{Teaching \newline Experience}%
+%\textbf{Marquette University,} Milwaukee, WI \newline
+%\emph{Graduate Teaching Assistant, Mechanical Engineering Department} \rdate{2012-2014}
+%MEEN~3210: Multidisciplinary Engineering Systems \rdate{\textsc{spring} 2013, \textsc{spring} 2014}\newline
+%%Graded homework assignments, assisted students with hands-on laboratory exercises, and held open laboratory sessions\newline
+%MEEN~2210: Electromechanical Engineering Systems \rdate{\textsc{spring} 2013, \textsc{spring} 2014}\newline
+%MEEN~3340: Thermodynamics II \rdate{\textsc{fall} 2013}\newline
+%\begin{itemize*}
+%\item Prepared and delivered short introductory lectures for 3 experiments: %\newline %
+%  \emph{Uncertainty Analysis}, \emph{Refrigeration Cycle}, and \emph{Heat Exchanger Performance}
+%\item Guided and assisted 70 students in completing the aforementioned experiments
+%\item Graded student reports for aforementioned experiments and held office hours
+%\item Revised and updated the MEEN 3340 Laboratory Manual for future use
+%\end{itemize*}
+%MEEN~3320: Fluid Mechanics \rdate{\textsc{fall} 2012}
+%Graded homework assignments and held office hours for 85 students in 3 sections
+%
+%\bigskip
+%\mhead{Leadership \newline Experience}%
+%\textbf{MSOE Society of Automotive Engineers,} Milwaukee, WI \newline
+%\emph{Chairman} \rdate{2011-2012}
+%\begin{itemize*}
+%  \item Oversaw the general operation of the 150-member MSOE Student Chapter
+%  \item Coordinated with professionals in nearby SAE Chapters to organize monthly events
+%  \item Other Previous Positions: Program Coordinator and Webmaster (\date{2010-2011})
+%\end{itemize*}
+%
+%\medskip
+%\emph{Technical Lead, Supermileage Vehicle Steering Team} \rdate{2010-2011}
+%\begin{itemize*}
+%  \item Designed, analyzed, manufactured, and tested aluminum suspension frame
+%  \item Responsible for steering/brake system performance and component integration
+%%  \item Provided weekly progress reports to Project Manager and other team leaders
+%  \item Co-authored and edited the \href{https://dl.dropbox.com/u/10724484/resume/MSOE_CarbonairDesignReport2011.pdf}{Design Report} (First Place, Design Report Competition)
+%\end{itemize*}
+%
+%\bigskip
+%\textbf{MSOE Residence Life,} Milwaukee, WI \newline
+%\emph{Resident Assistant} \rdate{2010-2012}
+%\begin{itemize*}
+%  \item Provided academic, personal, and professional advice for 35 students
+%  \item Planned events for residents, such as r\'{e}sum\'{e} workshops and indoor rock climbing
+%  \item Resolved roommate conflicts and policy violations as needed
+%\end{itemize*}
+%
+%\bigskip
+%\mhead{Research \newline Experience}%
+%\textbf{MSOE Rapid Prototyping Research,} Milwaukee, WI \newline
+%\emph{Undergraduate Research Assistant} \rdate{2009-2011}
+%\begin{itemize*}
+%\item Designed and modeled mold flow passages to improve metal flow and solidification
+%\item Prepared rapid-prototyped patterns and created ceramic molds
+%\item Cast copper alloy nozzle structures using a novel vacuum-casting process
+%\item Contributed to reports and presentations for two actively-cooled nozzle projects
+%\end{itemize*}
+%
+%\bigskip
+%\mhead{Publications}%
+%%\emph{Conference paper}\\
+%\par\vspace{-\baselineskip}\textbf{Gessler, P.D.,} Mathison, M.M., \& Bowman, A.J.~(\date{17 \textsc{july} 2014}).
+%\emph{\href{https://www.conftool.com/2014Purdue/index.php/Gessler-2014-Modeling_of_a_Hot_Gas_Bypass_Test_Block_for_Centrifugal_Compressors-1549_a.pdf?page=downloadPaper&filename=Gessler-2014-Modeling_of_a_Hot_Gas_Bypass_Test_Block_for_Centrifugal_Compressors-1549_a.pdf&form_id=1549&form_version=final}{Modeling of a Hot Gas Bypass Test Block for Centrifugal Compressors}}.
+%Paper presented at the {International Compressor Engineering Conference at Purdue University}, West Lafayette, IN.
+%
+%\medskip
+%%\emph{Book}\\
+%Prantil, V.C., Papadopoulos, C., \& \textbf{Gessler, P.D.} (\date{2013}). 
+%\emph{\href{http://www.morganclaypool.com/doi/abs/10.2200/S00503ED1V01Y201305ENG023}{Lying By Approximation: The Truth about Finite Element Analysis}}.
+%San Francisco, CA: Morgan \& Claypool Publishers.
+%
+%\bigskip
+%\mhead{Invited Talks}%
+%\textbf{Gessler, P.D.} (\date{6 \textsc{nov.}~2014}, \date{11 \textsc{nov.}~2013}).
+%\emph{FEA for Thermal Applications: Developing a Transient, Two-dimensional Code.}
+%Guest lecture at Milwaukee School of Engineering.
+%
+%\medskip
+%\textbf{Gessler, P.D.} (\date{30 \textsc{sept.}~2013}).
+%\emph{Introduction to Model-Based Design: With Transportation Examples.}
+%Presentation delivered to the MSOE Society of Automotive Engineers.
+%
+%\bigskip
+%\mhead{Professional \newline Affiliations}%
+%Member ASHRAE \rdate{2012-2014}\newline
+%Member SAE \rdate{2008-2013}
+%
+%\bigskip
+%\mhead{Activities \& \newline Interests}%
+%Varsity Crew (\date{2008-2010}), 
+%Cycling, 
+%Running, 
+%Backpacking, 
+%Canoeing, 
+%%Woodworking, 
+%Photography, 
+%Graphic/Web Design,
+%Computer System Administration,
+%Trumpet Performance
+\end{document}
